@@ -1,7 +1,7 @@
 import os
 from selenium import webdriver
 
-SAUCE_URL = "https://%s:%s@ondemand.saucelabs.com/wd/hub" % (
+SAUCE_URL = "http://%s:%s@ondemand.saucelabs.com/wd/hub" % (
     os.environ.get('SAUCE_USERNAME', ''),
     os.environ.get('SAUCE_ACCESS_KEY', ''),
 )
