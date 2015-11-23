@@ -22,6 +22,7 @@ SELENIUM_WEBDRIVERS = {
         'callable': webdriver.Remote,
         'args': (),
         'kwargs': {
+           ' command_executor': SAUCE_URL, 
             'desired_capabilities': generate_selenium_capabilities(
                 os.environ.get(
                     'SELENIUM_REMOTE_DRIVER',
