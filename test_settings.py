@@ -1,7 +1,7 @@
 import os
 from selenium import webdriver
 
-SAUCE_URL = "http://%s:%s@ondemand.saucelabs.com/wd/hub" % (
+SAUCE_URL = "http://%s:%s@127.0.0.1:4445/wd/hub" % (
     os.environ.get('SAUCE_USERNAME', ''),
     os.environ.get('SAUCE_ACCESS_KEY', ''),
 )
@@ -22,7 +22,7 @@ SELENIUM_WEBDRIVERS = {
         'callable': webdriver.Remote,
         'args': (),
         'kwargs': {
-            'command_executor': SAUCE_URL, 
+            'command_executor': SAUCE_URL,
             'desired_capabilities': generate_selenium_capabilities(
                 os.environ.get(
                     'SELENIUM_REMOTE_DRIVER',
