@@ -9,7 +9,6 @@ python:
 env:
   matrix:
     - SELENIUM_WEBDRIVER=default
-    - SELENIUM_WEBDRIVER=chrome
 matrix:
   fast_finish: true
 before_install:
