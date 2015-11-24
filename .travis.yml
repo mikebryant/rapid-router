@@ -10,6 +10,17 @@ env:
   matrix:
     - SELENIUM_WEBDRIVER=default
 matrix:
+  allow_failures:
+    - python: 3.3
+      env: SELENIUM_WEBDRIVER=default
+    - python: 3.4
+      env: SELENIUM_WEBDRIVER=default
+    - python: 3.5
+      env: SELENIUM_WEBDRIVER=default
+    - python: pypy
+      env: SELENIUM_WEBDRIVER=default
+    - python: pypy3
+      env: SELENIUM_WEBDRIVER=default
   fast_finish: true
 before_install:
   - gem install sass
