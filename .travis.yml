@@ -7,23 +7,20 @@ python:
   - pypy
   - pypy3
 env:
-  global:
-    - secure: "s7sJWKCWPBrzGLL3Obm56pQIhmrmH+XUPQZzdfbO74RspqzJ/UWzdOnChKdzv70j8rgnz9S7eZj235NbVU4FpbQLSZvSnEroSontnz+IeqETCHhvJ+3uKNq4E9hNzqOlzYGoD7tQ9Lpcmm39GEm88vhXhr/QRR5v2j2CG+DoNLVerGiiVhpFJZOpC1IqWDFjlzE8oi1qA7mnKBFUGP4tO+F/CVtrHi7fexI54YBPnAL+57nI2FCh+MhFxwvjsNzBJREjzBUU4GAbna2aOe7ZFqke0MdrF/H+CkcTr0gcSKdr3gnFaW1QgP4S6YBwKCXa00BaEhw/yQcnuveVX2Tmj5lmHSIOU7Na0V+CUM0HwgT4Mfqy0QRbZbU2vHM0FFsfHuSbGQdRfWZ7GZa3ct5pLfFJ2YSNsn1/7H0OA7k2osy35BQCPl/dkoOuYyIfxJ4SpOXXr/iRUp0nDl9hAXXyPcS0tDUJe7YILBDCUaSDB9WC+zg0yCuGMaAN+VD8cuwAm40ss13yZzCFn8IX7LTX7JlZe76to04rxgGjOTllEDcAhtd2ap1E3Nl+SSfobGsXIF1EFJhe8k7WisREL2Nl3ogR2Cuw2O0OeeTWWlqd3W4+pjma/XySGeAkmNpNeIn14gKRGY+DoRdr7l1fUzk16/VthO3V1JjWpNJh9mIIE2w=" #SAUCE_ACCESS_KEY
-    - SAUCE_USERNAME=rapid-router
-    - SELENIUM_WEBDRIVER=remote
   matrix:
-    - SELENIUM_REMOTE_DRIVER=FIREFOX
-    - SELENIUM_REMOTE_DRIVER=CHROME
-    - SELENIUM_REMOTE_DRIVER=INTERNETEXPLORER
+    - SELENIUM_WEBDRIVER=default
+    - SELENIUM_WEBDRIVER=chrome
 matrix:
   fast_finish: true
 install:
   - pip install -e .
   - pip install git+https://github.com/ocadotechnology/codeforlife-portal.git#egg=codeforlife-portal #TODO: Remove as part of #688
   - pip install coveralls
+before_script:
+  - "export DISPLAY=:99.0"
+  - "sh -e /etc/init.d/xvfb start"
+  - sleep 3 # give xvfb some time to start
 script:
   - python setup.py test
 after_success:
   - coveralls
-addons:
-  sauce_connect: true

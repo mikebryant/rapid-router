@@ -1,35 +1,16 @@
 import os
 from selenium import webdriver
 
-SAUCE_URL = "http://%s:%s@127.0.0.1:4445/wd/hub" % (
-    os.environ.get('SAUCE_USERNAME', ''),
-    os.environ.get('SAUCE_ACCESS_KEY', ''),
-)
-
-
-def generate_selenium_capabilities(base_name):
-    caps = getattr(webdriver.DesiredCapabilities, base_name).copy()
-    caps['build'] = caps['tunnel-identifier'] = os.environ.get('TRAVIS_JOB_NUMBER', '')
-    return caps
-
 SELENIUM_WEBDRIVERS = {
     'default': {
         'callable': webdriver.Firefox,
         'args': (),
         'kwargs': {},
     },
-    'remote': {
-        'callable': webdriver.Remote,
+    'chrome': {
+        'callable': webdriver.Chrome,
         'args': (),
-        'kwargs': {
-            'command_executor': SAUCE_URL,
-            'desired_capabilities': generate_selenium_capabilities(
-                os.environ.get(
-                    'SELENIUM_REMOTE_DRIVER',
-                    'FIREFOX',
-                ),
-            ),
-        },
+        'kwargs': {},
     },
 }
 
