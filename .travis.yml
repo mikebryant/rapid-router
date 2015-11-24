@@ -14,12 +14,12 @@ matrix:
   fast_finish: true
 install:
   - pip install -e .
-  - pip install git+https://github.com/ocadotechnology/codeforlife-portal.git#egg=codeforlife-portal #TODO: Remove as part of #688
+  - pip install -e git+https://github.com/ocadotechnology/codeforlife-portal.git#egg=codeforlife-portal #TODO: Remove as part of #688
   - pip install coveralls
 before_script:
   - "export DISPLAY=:99.0"
   - "sh -e /etc/init.d/xvfb start"
-  - sleep 3 # give xvfb some time to start
+  - sleep 3
 script:
   - python setup.py test
 after_success:
