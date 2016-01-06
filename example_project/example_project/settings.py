@@ -42,8 +42,8 @@ TEMPLATE_DEBUG = DEBUG
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': os.path.join(os.path.abspath(os.path.dirname(__file__)),'db.sqlite3'),# Or path to database file if using sqlite3.
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(os.path.abspath(os.path.dirname(__file__)), 'db.sqlite3'),
     }
 }
 
@@ -67,7 +67,7 @@ INSTALLED_APPS = (
 PIPELINE_ENABLED = False
 
 try:
-    from example_project.local_settings import * # pylint: disable=E0611
+    from example_project.local_settings import *  # pylint: disable=E0611
 except ImportError:
     pass
 
