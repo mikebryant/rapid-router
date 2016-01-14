@@ -1,6 +1,10 @@
 language: python
 python:
   - 2.7
+addons:
+  apt:
+    packages:
+    - zeroinstall-injector
 env:
   matrix:
     - SELENIUM_WEBDRIVER=default
@@ -44,6 +48,10 @@ after_success:
   - coveralls
 git:
   depth: 9999999 # Building untagged builds needs enough depth to get the latest tag
+before_deploy:
+  - mkdir -p ~/bin | yes | 0install -c add zanata-cli https://raw.githubusercontent.com/zanata/zanata.github.io/master/files/0install/zanata-cli.xml
+  - zanata-cli --batch-mode push --copy-trans true
+  - zanata-cli --batch-mode pull --create-skeletons
 deploy:
   provider: pypi
   user: ocadotechnology

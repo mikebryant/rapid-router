@@ -1,0 +1,21 @@
+<config xmlns="http://zanata.org/namespace/config/">
+    <hooks>
+        <hook command="push">
+            <before>mkdir -p game/locale/en</before>
+            <before>./.cd.sh game django-admin makemessages -l en --keep-pot</before>
+            <after>rm game/locale/django.pot</after>
+        </hook>
+        <hook command="pull">
+            <after>./.cd.sh game django-admin compilemessages</after>
+        </hook>
+    </hooks>
+    <project>code-for-life</project>
+    <project-version>master</project-version>
+    <project-type>gettext</project-type>
+    <rules>
+        <rule pattern="**/*.pot">{path}/{locale_with_underscore}/LC_MESSAGES/{filename}.po</rule>
+    </rules>
+    <src-dir>.</src-dir>
+    <trans-dir>.</trans-dir>
+    <url>https://translate.zanata.org/zanata/</url>
+</config>
